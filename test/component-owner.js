@@ -22,8 +22,10 @@ describe('Component Owner Suite', () => {
 
     const {intl} = intlProvider.getChildContext();
     const targetData = {
-      elementId: 'test-target',
-      greeting: 'Hello world!'
+        elementId            : 'app',
+        contentTemplateLarge : true,
+        footerVisible        : true,
+        successBtnCallback   : () => { console.log('¡¡success button pressed!!')
     };
 
     renderer.render(
@@ -45,13 +47,13 @@ describe('Component Owner Suite', () => {
 
     const {intl} = intlProvider.getChildContext();
     const targetData = {
-      elementId: 'test-target',
-      greeting: 'Hello test!'
+      elementId            : 'app',
+      contentTemplateLarge : true,
+      footerVisible        : true,
+      successBtnCallback   : () => { console.log('¡¡success button pressed!!')
     };
     const locale = 'en';
-    const translations = {
-      'en' : {}
-    };
+    const translations = { 'en' : {} };
 
     const container = TestUtils.renderIntoDocument(<IntlProvider locale={locale} messages={translations[locale]}><ComponentOwner data={targetData} intl={intl} /></IntlProvider>);
     const button = TestUtils.findRenderedDOMComponentWithTag(container, 'button');
