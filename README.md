@@ -1,51 +1,42 @@
-## Origami Starter Kit [![Build Status](https://travis-ci.org/Pearson-Higher-Ed/component-archetype.svg?branch=master)](https://travis-ci.org/Pearson-Higher-Ed/component-archetype)
+# textModal
 
-This is a comprehensive starter kit for creating a **standalone Origami v2 component**. You should integrate your component 
-into a larger application capable of managing data flow of all available components.
+## Summary
 
-In order to utilize this successfully, you **must** have solid working knowledge of Facebook's React - a library for
-building composable user interfaces. You should understand ES2015 (ES6) syntax and concepts as well.
+Modal for displaying text....
 
-This starter kit implements best practices like testing, linting, bundling, transpiling ES6 to ES5, etc. It codifies a
-long list of decisions that you no longer have to make to get rolling. It saves you from the long, painful process of
-wiring it all together into an automated development environment and build process.
+## Getting started
 
-## Public or Private?
+To view the demo:
 
-Your first decision: Are you building a public (OSS) or private (internal only) component? By default, Origami
-components are public unless it was decided otherwise in consultation with the Pearson Design Accelerator (PDA) team.
+clone the repo.
 
-Requests to the PDA team must be sent to pearson-design-accelerator@pearson.com.
+install the dependencies.
 
-If you are building open source, the repo belongs in the **Pearson GitHub** organization. Send a request to be invited 
-with all contributing developer GitHub usernames to the PDA team. You must accept the resulting email invitation to join.
+`npm i`
 
-If it is decided the repo belongs in **Pearson Bitbucket**, send a request to the PDA team for all contributing developers
- to be given write access to bitbucket.pearson.com/projects/PDA.
+start the server.
 
-## Getting Started
+`npm run dev`
 
-1. Create your new repository as decided above, using the following naming convention:
-    1. All lowercase characters, and hyphens instead of camel case.
-    2. Do **not** use "component" in the name, as it is redundant.
+access in the browser:
 
-2. Follow these [directions](https://help.github.com/articles/caching-your-github-password-in-git/#platform-all) to stop
- manually authenticating to GitHub on every network request. This enables the use of automated npm scripts.
+`http://localhost:8081/demo/#`
 
-3. Perform these steps in your development environment:  
-	1. git clone https://github.com/Pearson-Higher-Ed/component-archetype.git `name-of-your-new-component`
-	2. cd `name-of-your-new-component`
-    3. git remote set-url origin `url-of-new-component-repository`
-    4. git remote -v
 
-4. Once you've verified that the remote origin now looks correct for your repo, do the initial push:
+In demo/demo.js you may pass configuration parameter when instantiating the object.
+The three parameters that you can configure are:
+elementId, contentTemplateLarge, footerVisible
 
-    git push -u origin master
+// element to render component to... in this case 'app'
 
-5. Turn off Selenium testing until ready for QA to begin that effort, by commenting out `./test/shell_scripts/run_tests.sh`
-in .travis.yml.
+elementId            : 'app'
 
-## Ready to Develop
+// apply pe-template__static-large or pe-template__static-small... in the case below pe-template__static-large
 
-After completing the above steps, delete this README and rename [README.main.md](README.main.md) as "README.md" for
-your project. You are ready to begin developing your component!
+contentTemplateLarge : true  
+
+// render the footer... in the case below the footer is visible
+
+footerVisible        : true   
+
+All text is configured in src/js/defaultMessages.js
