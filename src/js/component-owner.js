@@ -1,4 +1,5 @@
-import '../scss/component-specific.scss';
+import '../scss/component-specific.scss'
+
 import React, { PropTypes, Component } from 'react';
 import { intlShape, injectIntl }       from 'react-intl';
 import { messages }                    from './defaultMessages';
@@ -11,7 +12,7 @@ class ComponentOwner extends Component {
     intl: intlShape.isRequired,
     data: PropTypes.shape({
       elementId            : PropTypes.string.isRequired,
-      successBtnCallback   : PropTypes.func,
+      successBtnCallBack   : PropTypes.func,
       locale               : PropTypes.string,
       contentTemplateLarge : PropTypes.bool,
       footerVisible        : PropTypes.bool
@@ -33,11 +34,11 @@ class ComponentOwner extends Component {
       }
     };
 
-    this.toggleModal    = _toggleModal.bind(this);
-    this.renderFooter   = _renderFooter.bind(this);
-    this.toggleTemplate = _toggleTemplate.bind(this);
-    this.trapFocus      = _trapFocus.bind(this);
-    this.afterOpen      = _afterOpen.bind(this);
+    this.toggleModal         = _toggleModal.bind(this);
+    this.renderFooter        = _renderFooter.bind(this);
+    this.toggleTemplate      = _toggleTemplate.bind(this);
+    this.trapFocus           = _trapFocus.bind(this);
+    this.afterOpen           = _afterOpen.bind(this);
 
   };
 
@@ -55,8 +56,7 @@ class ComponentOwner extends Component {
       toggleTemplate        : this.toggleTemplate(data.contentTemplateLarge),
       renderFooter          : this.renderFooter(data.footerVisible,
                                                 intl.formatMessage(messages.modalSaveButtonText),
-                                                intl.formatMessage(messages.modalCancelButtonText),
-                                                data.successBtnCallback
+                                                intl.formatMessage(messages.modalCancelButtonText)
                                                )
     });
 
@@ -92,14 +92,14 @@ class ComponentOwner extends Component {
 
           <div id="modalContent" className="modalContent" aria-labelledby="modalContent" role="document">
 
-            <div className="modalHeader">
+            <div id="modalHeader" className="modalHeader" aria-labelledby="modalHeader">
               <button className="pe-btn--link pe-icon--times modalClose" onClick={() => this.toggleModal()}>
                 <span className="pe-sr-only">{closeButtonSRText}</span>
               </button>
               <h2 id="modalHeaderText" aria-labelledby="modalHeaderText" className="modalHeaderText pe-title">{headerTitle}</h2>
             </div>
 
-            <div className="modalBody">
+            <div id="modalBody" className="modalBody" aria-labelledby="modalBody">
               <p id="modalBodyText">{bodyText}</p>
             </div>
 
@@ -125,23 +125,25 @@ function _toggleModal() {
   this.setState({modalIsOpen : !this.state.modalIsOpen});
 };
 
-function _afterOpen() {
-  document.getElementsByClassName('modalClose')[0].focus();
-};
-
 function _trapFocus(modalIsOpen) {
   return (modalIsOpen) ? '-1' : '0';
+};
+
+function _afterOpen() {
+  return document.getElementsByClassName('modalClose')[0].focus();
 };
 
 function _toggleTemplate(contentTemplateLarge) {
   return (contentTemplateLarge) ? 'pe-template__static-large' : 'pe-template__static-small';
 };
 
-function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback) {
+function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText) {
+
   if (footerVisible) {
+    const { successBtnCallBack } = this.props.data;
     return(
-      <div className="modalFooter">
-        <button onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
+      <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
+        <button onClick={() => successBtnCallBack()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
         <button onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
       </div>
     )
