@@ -1,4 +1,4 @@
-import '../scss/component-specific.scss'
+import '../scss/component-specific.scss';
 
 import React, { PropTypes, Component } from 'react';
 import { intlShape, injectIntl }       from 'react-intl';
@@ -12,7 +12,7 @@ class ComponentOwner extends Component {
     intl: intlShape.isRequired,
     data: PropTypes.shape({
       elementId            : PropTypes.string.isRequired,
-      successBtnCallBack   : PropTypes.func,
+      successBtnCallback   : PropTypes.func,
       locale               : PropTypes.string,
       contentTemplateLarge : PropTypes.bool,
       footerVisible        : PropTypes.bool
@@ -34,11 +34,11 @@ class ComponentOwner extends Component {
       }
     };
 
-    this.toggleModal         = _toggleModal.bind(this);
-    this.renderFooter        = _renderFooter.bind(this);
-    this.toggleTemplate      = _toggleTemplate.bind(this);
-    this.trapFocus           = _trapFocus.bind(this);
-    this.afterOpen           = _afterOpen.bind(this);
+    this.toggleModal    = _toggleModal.bind(this);
+    this.renderFooter   = _renderFooter.bind(this);
+    this.toggleTemplate = _toggleTemplate.bind(this);
+    this.trapFocus      = _trapFocus.bind(this);
+    this.afterOpen      = _afterOpen.bind(this);
 
   };
 
@@ -56,7 +56,8 @@ class ComponentOwner extends Component {
       toggleTemplate        : this.toggleTemplate(data.contentTemplateLarge),
       renderFooter          : this.renderFooter(data.footerVisible,
                                                 intl.formatMessage(messages.modalSaveButtonText),
-                                                intl.formatMessage(messages.modalCancelButtonText)
+                                                intl.formatMessage(messages.modalCancelButtonText),
+                                                data.successBtnCallback
                                                )
     });
 
@@ -137,13 +138,11 @@ function _toggleTemplate(contentTemplateLarge) {
   return (contentTemplateLarge) ? 'pe-template__static-large' : 'pe-template__static-small';
 };
 
-function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText) {
-
+function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback) {
   if (footerVisible) {
-    const { successBtnCallBack } = this.props.data;
     return(
       <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
-        <button onClick={() => successBtnCallBack()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
+        <button onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
         <button onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
       </div>
     )
