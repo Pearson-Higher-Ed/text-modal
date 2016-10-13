@@ -1,65 +1,58 @@
 /* global describe it expect */
 
-import expect from 'expect';
-import expectJSX from 'expect-jsx';
-import React from 'react';
-import {IntlProvider} from 'react-intl';
-import TestUtils from 'react-addons-test-utils';
-import ComponentOwner from '../src/js/component-owner';
+import expect              from 'expect';
+import React               from 'react';
+import {IntlProvider}      from 'react-intl';
+import * as ComponentOwner from '../src/js/component-owner';
+import { mountWithIntl }   from './utils/intl-enzyme-test-helper.js';
 
-expect.extend(expectJSX);
 
 describe('Component Owner Suite', () => {
-  let renderer;
-  let intlProvider;
 
-  beforeEach(() => {
-    renderer = TestUtils.createRenderer();
-    intlProvider = new IntlProvider({locale: 'en'}, {});
-  });
+  let intlProvider = new IntlProvider({locale: 'en'}, {});
 
-  it('shallowly renders the component owner using React TestUtils', () => {
+  const {intl}       = intlProvider.getChildContext();
+  const targetData   = {
+    elementId            : 'test-target',
+    contentTemplateLarge : true,
+    footerVisible        : true,
+    successBtnCallback   : () => { console.log('¡¡success button pressed!!') }
+  };
 
-    const {intl} = intlProvider.getChildContext();
-    const targetData = {
-        elementId            : 'app',
-        contentTemplateLarge : true,
-        footerVisible        : true,
-        successBtnCallback   : () => { console.log('¡¡success button pressed!!')
-    };
 
-    renderer.render(
-      <ComponentOwner.WrappedComponent
-        data={targetData}
-        intl={intl} />
-      , {intl}
+  it('should toggleModal', () => {
+
+    const wrapper = mountWithIntl(
+      <ComponentOwner.default.WrappedComponent data={targetData} intl={intl} />
+      , {targetData}
     );
+    wrapper.find('button').simulate('click');
+    expect(wrapper.state('modalIsOpen')).toBe(true);
 
-    expect(renderer.getRenderOutput()).toEqualJSX(
-      <div className="pe-inlineblock"><button className="pe-btn pe-btn--primary" onClick={function noRefCheck() {}}>say hello</button>
-        &nbsp;
-        <span className="pe-input"><input type="text" value="" placeholder="placeholder" /></span>
-      </div>
-    );
   });
 
-  it('renders the correct text when the button is clicked, in a document provided by jsdom', () => {
-
-    const {intl} = intlProvider.getChildContext();
-    const targetData = {
-      elementId            : 'app',
-      contentTemplateLarge : true,
-      footerVisible        : true,
-      successBtnCallback   : () => { console.log('¡¡success button pressed!!')
-    };
-    const locale = 'en';
-    const translations = { 'en' : {} };
-
-    const container = TestUtils.renderIntoDocument(<IntlProvider locale={locale} messages={translations[locale]}><ComponentOwner data={targetData} intl={intl} /></IntlProvider>);
-    const button = TestUtils.findRenderedDOMComponentWithTag(container, 'button');
-    const input =  TestUtils.findRenderedDOMComponentWithTag(container, 'input');
-    TestUtils.Simulate.click(button);
-    expect(input.value).toEqual('Hello test!');
+  it('should trapFocus', () => {
+    let modalIsOpen = false;
+    expect(ComponentOwner._trapFocus(modalIsOpen)).toBe('0');
+    modalIsOpen = true;
+    expect(ComponentOwner._trapFocus(modalIsOpen)).toBe('-1');
   });
+
+  it('should toggleTemplate', () => {
+    let contentTemplateLarge = false;
+    expect(ComponentOwner._toggleTemplate(contentTemplateLarge)).toBe('pe-template__static-small');
+    contentTemplateLarge = true;
+    expect(ComponentOwner._toggleTemplate(contentTemplateLarge)).toBe('pe-template__static-large');
+  });
+
+  // it('should trap focus', () =>{
+  //
+  // });
+  //
+  // it('should', () =>{
+  //
+  // });
+
+
 
 });

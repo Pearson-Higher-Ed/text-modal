@@ -122,23 +122,23 @@ export default injectIntl(ComponentOwner);
 
 
 
-function _toggleModal() {
+export function _toggleModal() {
   this.setState({modalIsOpen : !this.state.modalIsOpen});
 };
 
-function _trapFocus(modalIsOpen) {
+export function _trapFocus(modalIsOpen) {
   return (modalIsOpen) ? '-1' : '0';
 };
 
-function _afterOpen() {
+export function _afterOpen() {
   return document.getElementsByClassName('modalClose')[0].focus();
 };
 
-function _toggleTemplate(contentTemplateLarge) {
+export function _toggleTemplate(contentTemplateLarge) {
   return (contentTemplateLarge) ? 'pe-template__static-large' : 'pe-template__static-small';
 };
 
-function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback) {
+export function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback) {
   if (footerVisible) {
     return(
       <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
