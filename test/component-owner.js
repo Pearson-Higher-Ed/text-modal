@@ -49,22 +49,11 @@ describe('Component Owner Suite', () => {
     expect(document.getElementsByTagName('button')[0] == document.activeElement).toBe(true);
   });
 
-  // export function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback) {
-  //   if (footerVisible) {
-  //     return(
-  //       <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
-  //         <button onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
-  //         <button onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
-  //       </div>
-  //     )
-  //   };
-
   it('should render footer conditionally', () => {
     const footerVisible         = true;
     const modalSaveButtonText   = 'save';
     const modalCancelButtonText = 'cancel';
     const successBtnCallback    = () => { console.log('¡¡success button pressed!!') }
-    console.log(ComponentOwner._renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback))
     expect(ComponentOwner._renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback)).toEqualJSX(
       <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
         <button onClick={function noRefCheck() {}} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
