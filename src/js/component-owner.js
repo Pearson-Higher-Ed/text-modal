@@ -37,7 +37,6 @@ class ComponentOwner extends Component {
     this.toggleModal    = _toggleModal.bind(this);
     this.renderFooter   = _renderFooter.bind(this);
     this.toggleTemplate = _toggleTemplate.bind(this);
-    this.trapFocus      = _trapFocus.bind(this);
     this.afterOpen      = _afterOpen.bind(this);
 
   };
@@ -79,7 +78,7 @@ class ComponentOwner extends Component {
     return (
       <div>
 
-        <button onClick={this.toggleModal} tabIndex={this.trapFocus(modalIsOpen)} >{initiatingButtonText}</button>
+        <button id="initiatingButton" onClick={this.toggleModal} aria-expanded="false">{initiatingButtonText}</button>
 
         <Modal
           onRequestClose = {this.toggleModal}
@@ -91,16 +90,16 @@ class ComponentOwner extends Component {
           role           = "dialog"
         >
 
-          <div id="modalContent" className="modalContent" aria-labelledby="modalContent" role="document">
+          <div id="modalContent" className="modalContent" aria-labelledby="modalContent">
 
-            <div id="modalHeader" className="modalHeader" aria-labelledby="modalHeader">
+            <div id="modalHeader" className="modalHeader">
               <button className="pe-btn--link pe-icon--times modalClose" onClick={() => this.toggleModal()}>
                 <span className="pe-sr-only">{closeButtonSRText}</span>
               </button>
-              <h2 id="modalHeaderText" aria-labelledby="modalHeaderText" className="modalHeaderText pe-title">{headerTitle}</h2>
+              <h2 id="modalHeaderText"className="modalHeaderText pe-title">{headerTitle}</h2>
             </div>
 
-            <div id="modalBody" className="modalBody" aria-labelledby="modalBody">
+            <div id="modalBody" className="modalBody">
               <p id="modalBodyText">{bodyText}</p>
             </div>
 
@@ -123,15 +122,16 @@ export default injectIntl(ComponentOwner);
 
 
 export function _toggleModal() {
-  this.setState({modalIsOpen : !this.state.modalIsOpen});
-};
 
-export function _trapFocus(modalIsOpen) {
-  return (modalIsOpen) ? '-1' : '0';
+  const { modalIsOpen } = this.state;
+
+  document.getElementById('initiatingButton').setAttribute('aria-expanded', !modalIsOpen);
+
+  this.setState({modalIsOpen : !modalIsOpen});
 };
 
 export function _afterOpen() {
-  return document.getElementsByClassName('modalClose')[0].focus();
+  document.getElementsByClassName('modalClose')[0].focus();
 };
 
 export function _toggleTemplate(contentTemplateLarge) {
@@ -142,8 +142,8 @@ export function _renderFooter(footerVisible, modalSaveButtonText, modalCancelBut
   if (footerVisible) {
     return(
       <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
-        <button onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
-        <button onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
+        <button id="successButton" onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
+        <button id="cancelButton" onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
       </div>
     )
   };
