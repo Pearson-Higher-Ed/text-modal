@@ -41,7 +41,8 @@ body {
 };
 
 .modalSave{
-  float : right;
+  float   : right;
+  outline : none;
 };
 
 .modalClose{
@@ -49,6 +50,7 @@ body {
   font-size       : x-large;
   text-decoration : none;
   color           : inherit;
+  outline         : none;
 };
 
 button.modalClose{

@@ -10,7 +10,6 @@ import { mountWithIntl }   from './utils/intl-enzyme-test-helper.js';
 expect.extend(expectJSX);
 
 describe('Component Owner Suite', () => {
-
   const intlProvider = new IntlProvider({locale: 'en'}, {});
   const {intl}       = intlProvider.getChildContext();
   const targetData   = {
@@ -30,13 +29,6 @@ describe('Component Owner Suite', () => {
     expect(wrapper.state('modalIsOpen')).toBe(true);
   });
 
-  it('should trapFocus', () => {
-    let modalIsOpen = false;
-    expect(ComponentOwner._trapFocus(modalIsOpen)).toBe('0');
-    modalIsOpen = true;
-    expect(ComponentOwner._trapFocus(modalIsOpen)).toBe('-1');
-  });
-
   it('should toggleTemplate', () => {
     let contentTemplateLarge = false;
     expect(ComponentOwner._toggleTemplate(contentTemplateLarge)).toBe('pe-template__static-small');
@@ -46,7 +38,7 @@ describe('Component Owner Suite', () => {
 
   it('should switch focus afterOpen', () => {
     wrapper.setState({modalIsOpen:true});
-    expect(document.getElementsByTagName('button')[0] == document.activeElement).toBe(true);
+    expect(document.getElementsByTagName('button')[1] == document.activeElement).toBe(true);
   });
 
   it('should render footer conditionally', () => {
@@ -56,12 +48,12 @@ describe('Component Owner Suite', () => {
     const successBtnCallback    = () => { console.log('¡¡success button pressed!!') }
     expect(ComponentOwner._renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback)).toEqualJSX(
       <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
-        <button onClick={function noRefCheck() {}} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
-        <button onClick={undefined} className="modalCancel pe-btn">{modalCancelButtonText}</button>
+        <button id="successButton" onClick={function noRefCheck() {}} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
+        <button id="cancelButton" onClick={undefined} className="modalCancel pe-btn">{modalCancelButtonText}</button>
       </div>
     );
   });
-  
+
 
 
 });
