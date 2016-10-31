@@ -90,17 +90,17 @@ class ComponentOwner extends Component {
           role           = "dialog"
         >
 
-          <div id="modalContent" className="modalContent" aria-labelledby="modalContent">
+          <div id="modalContent" className="modalContent">
 
             <div id="modalHeader" className="modalHeader">
               <button className="pe-btn--link pe-icon--times modalClose" onClick={() => this.toggleModal()}>
                 <span className="pe-sr-only">{closeButtonSRText}</span>
               </button>
-              <h2 id="modalHeaderText"className="modalHeaderText pe-title">{headerTitle}</h2>
+              <h2 id="modalHeaderText" className="modalHeaderText pe-title">{headerTitle}</h2>
             </div>
 
-            <div id="modalBody" className="modalBody">
-              <p id="modalBodyText">{bodyText}</p>
+            <div className="modalBody">
+              <p>{bodyText}</p>
             </div>
 
             {renderFooter}
@@ -132,6 +132,7 @@ export function _toggleModal() {
 
 export function _afterOpen() {
   document.getElementsByClassName('modalClose')[0].focus();
+  document.getElementsByClassName('ReactModal__Content')[0].setAttribute('aria-labelledby', 'modalContent')
 };
 
 export function _toggleTemplate(contentTemplateLarge) {
@@ -141,9 +142,9 @@ export function _toggleTemplate(contentTemplateLarge) {
 export function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback) {
   if (footerVisible) {
     return(
-      <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
-        <button id="successButton" onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
-        <button id="cancelButton" onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
+      <div id="modalFooter" className="modalFooter">
+        <button onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
+        <button onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
       </div>
     )
   };
