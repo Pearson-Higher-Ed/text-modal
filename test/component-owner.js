@@ -10,6 +10,7 @@ import { mountWithIntl }   from './utils/intl-enzyme-test-helper.js';
 expect.extend(expectJSX);
 
 describe('Component Owner Suite', () => {
+
   const intlProvider = new IntlProvider({locale: 'en'}, {});
   const {intl}       = intlProvider.getChildContext();
   const targetData   = {
@@ -54,6 +55,10 @@ describe('Component Owner Suite', () => {
     );
   });
 
+  it('should apply wrapper when open', () => {
+    wrapper.find('button').simulate('click');
+    expect(wrapper.find('#wrapper')).toExist();
+  });
 
 
 });

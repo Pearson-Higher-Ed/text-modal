@@ -4,6 +4,7 @@
   "description": "",
   "main": "./build/dist/text-modal.js",
   "scripts": {
+    "start": "npm run dev",
     "dev-setup": "node ./npm_scripts/dev-setup.js",
     "dev": "node ./npm_scripts/dev.js",
     "pretest": "node ./npm_scripts/pretest.js",
