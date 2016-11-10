@@ -8,7 +8,7 @@ function init() {
       elementId            : 'app',
       contentTemplateLarge : true,
       footerVisible        : true,
-      successBtnCallback   : () => { console.log('¡¡success button pressed!!') }
+      successBtnCallback   : function () { console.log('¡¡success button pressed!!') }
     }
   }));
 
@@ -17,7 +17,7 @@ function init() {
     elementId            : 'app',
     contentTemplateLarge : true,
     footerVisible        : true,
-    successBtnCallback   : () => { console.log('¡¡success button pressed!!') }
+    successBtnCallback   : function () { console.log('¡¡success button pressed!!') }
   });
 
 }
