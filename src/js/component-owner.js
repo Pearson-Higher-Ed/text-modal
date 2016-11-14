@@ -90,9 +90,9 @@ class ComponentOwner extends Component {
           style          = {customStyles}
           ariaHideApp    = {false}
           role           = "dialog"
-        >
+  	 >
 
-          <div id="modalContent" className="modalContent" aria-labelledby="modalContent">
+          <div id="modalContent" className="modalContent" >
 
             <div id="modalHeader" className="modalHeader">
               <button className="pe-btn--link pe-icon--times modalClose" onClick={() => this.toggleModal()}>
@@ -138,6 +138,7 @@ export function _toggleModal() {
 
 export function _afterOpen() {
   document.getElementsByClassName('modalClose')[0].focus();
+  document.querySelectorAll('[role="dialog"]')[0].setAttribute('aria-labeledby', 'modalHeaderText');
 };
 
 
@@ -183,9 +184,9 @@ export function _toggleTemplate(contentTemplateLarge) {
 export function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback) {
   if (footerVisible) {
     return(
-      <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
-        <button id="successButton" onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
-        <button id="cancelButton" onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
+      <div className="modalFooter" >
+        <button onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
+        <button onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
       </div>
     )
   };
