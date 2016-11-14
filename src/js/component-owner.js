@@ -98,7 +98,7 @@ class ComponentOwner extends Component {
               <button className="pe-btn--link pe-icon--times modalClose" onClick={() => this.toggleModal()}>
                 <span className="pe-sr-only">{closeButtonSRText}</span>
               </button>
-              <h2 id="modalHeaderText"className="modalHeaderText pe-title">{headerTitle}</h2>
+              <h2 id="modalHeaderText" className="modalHeaderText pe-title">{headerTitle}</h2>
             </div>
 
             <div id="modalBody" className="modalBody">
@@ -138,7 +138,9 @@ export function _toggleModal() {
 
 export function _afterOpen() {
   document.getElementsByClassName('modalClose')[0].focus();
-  document.querySelectorAll('[role="dialog"]')[0].setAttribute('aria-labeledby', 'modalHeaderText');
+  const modalContent     = document.querySelector('[class*="ReactModal__Overlay"]');
+  const modalContentRole = modalContent.querySelector('[role="dialog"]');
+  modalContentRole.setAttribute('aria-labeledby', 'modalHeaderText');
 };
 
 
