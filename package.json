@@ -1,6 +1,6 @@
 {
   "name": "text-modal",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "main": "./build/dist/text-modal.js",
   "scripts": {
