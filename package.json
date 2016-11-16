@@ -1,7 +1,7 @@
 {
-  "name": "text-modal",
+  "name": "@pearson-components/text-modal",
   "version": "1.0.0",
-  "description": "",
+  "description": "pearson accessible text modal",
   "main": "./build/dist/text-modal.js",
   "scripts": {
     "start": "npm run dev",
@@ -22,7 +22,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pearson-Higher-Ed/"
+    "url": "https://github.com/Pearson-Higher-Ed/text-modal"
   },
   "dependencies": {
     "enzyme": "^2.4.1",
