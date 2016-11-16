@@ -48,9 +48,9 @@ describe('Component Owner Suite', () => {
     const modalCancelButtonText = 'cancel';
     const successBtnCallback    = () => { console.log('¡¡success button pressed!!') }
     expect(ComponentOwner._renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback)).toEqualJSX(
-      <div id="modalFooter" className="modalFooter" aria-labelledby="modalFooter">
-        <button id="successButton" onClick={function noRefCheck() {}} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
-        <button id="cancelButton" onClick={undefined} className="modalCancel pe-btn">{modalCancelButtonText}</button>
+      <div className="modalFooter" >
+        <button onClick={function noRefCheck() {}} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
+        <button onClick={undefined} className="modalCancel pe-btn">{modalCancelButtonText}</button>
       </div>
     );
   });
