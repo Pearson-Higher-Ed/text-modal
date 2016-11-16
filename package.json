@@ -18,7 +18,7 @@
     "verify": "node ./npm_scripts/verify.js",
     "postinstall": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/cross-platform.js"
   },
-  "author": "",
+  "author": "Pearson Digital Accelerator",
   "license": "MIT",
   "repository": {
     "type": "git",
