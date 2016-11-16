@@ -5,15 +5,15 @@ echo "Trigger the Selenium tests for master branch: ux-test-platform repo...."
 #Step 1: API to trigger the ux-test-platform build with the below config
 body="{
 \"request\": {
-\"message\": \"feat(component-archetype): Run Demo Tests\",
+\"message\": \"feat(text-modal): Run Text-modal Tests\",
 \"branch\":\"master\",
 \"config\": {
 \"script\": [
-\"export component=component-archetype\",
+\"export component=text-modal\",
 \"export feature_branch=$TRAVIS_BRANCH\",
 \"chmod 777 ./src/main/shell_scripts/components.sh\",
 \"./src/main/shell_scripts/components.sh\",
-\"mvn -Dtest_suite_xml=component_archetype.xml test\"
+\"mvn -Dtest_suite_xml=text_modal.xml test\"
 ]
 }
 }}"
