@@ -38,6 +38,8 @@ class ComponentOwner extends Component {
     this.renderFooter   = _renderFooter.bind(this);
     this.toggleTemplate = _toggleTemplate.bind(this);
     this.afterOpen      = _afterOpen.bind(this);
+    this.applyWrapper   = _applyWrapper.bind(this);
+    this.removeWrapper  = _removeWrapper.bind(this);
 
   };
 
@@ -88,9 +90,10 @@ class ComponentOwner extends Component {
           style          = {customStyles}
           ariaHideApp    = {false}
           role           = "dialog"
-        >
+  	 >
 
-          <div id="modalContent" className="modalContent">
+
+          <div id="modalContent" className="modalContent" >
 
             <div id="modalHeader" className="modalHeader">
               <button className="pe-btn--link pe-icon--times modalClose" onClick={() => this.toggleModal()}>
@@ -127,22 +130,62 @@ export function _toggleModal() {
 
   document.getElementById('initiatingButton').setAttribute('aria-expanded', !modalIsOpen);
 
+  (!modalIsOpen) ? this.applyWrapper() : this.removeWrapper();
+
   this.setState({modalIsOpen : !modalIsOpen});
+
 };
+
 
 export function _afterOpen() {
   document.getElementsByClassName('modalClose')[0].focus();
-  document.getElementsByClassName('ReactModal__Content')[0].setAttribute('aria-labelledby', 'modalContent')
+  document.getElementsByClassName('ReactModal__Content')[0].setAttribute('aria-labelledby', 'modalContent');
 };
+
+
+export function _applyWrapper() {
+
+  if (!document.getElementById('wrapper')) {
+
+    const wrapper = document.createElement('div');
+    wrapper.id    = 'wrapper';
+    wrapper.setAttribute('aria-hidden', true);
+
+    const excludedElement = document.getElementsByClassName('ReactModalPortal')[0];
+
+    while (document.body.firstChild !== excludedElement) {
+      wrapper.appendChild(document.body.firstChild);
+    }
+
+    document.body.appendChild(wrapper);
+    document.body.appendChild(excludedElement);
+  }
+
+};
+
+
+export function _removeWrapper() {
+  const wrapper         = document.getElementById('wrapper');
+  const excludedElement = document.getElementsByClassName('ReactModalPortal')[0];
+
+  while (wrapper.firstChild) {
+    document.body.appendChild(wrapper.firstChild);
+  }
+
+  document.body.removeChild(wrapper);
+  document.body.appendChild(excludedElement);
+};
+
 
 export function _toggleTemplate(contentTemplateLarge) {
   return (contentTemplateLarge) ? 'pe-template__static-large' : 'pe-template__static-small';
 };
 
+
 export function _renderFooter(footerVisible, modalSaveButtonText, modalCancelButtonText, successBtnCallback) {
   if (footerVisible) {
     return(
-      <div id="modalFooter" className="modalFooter">
+      <div className="modalFooter" >
         <button onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
         <button onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
       </div>
