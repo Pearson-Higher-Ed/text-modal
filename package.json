@@ -31,7 +31,7 @@
     "react-modal": "^1.5.2"
   },
   "devDependencies": {
-    "@pearson-components/npm-scripts": "^0.3.6",
+    "@pearson-components/npm-scripts": "^0.3.7",
     "babel-core": "~6.3.17",
     "babel-eslint": "~4.1.6",
     "babel-loader": "~6.2.0",
