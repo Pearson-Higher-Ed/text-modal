@@ -4,9 +4,9 @@
   "description": "pearson accessible text modal",
   "main": "./build/dist/text-modal.js",
   "scripts": {
-    "start": "npm run dev",
     "dev-setup": "node ./npm_scripts/dev-setup.js",
     "dev": "node ./npm_scripts/dev.js",
+    "start": "npm run dev",
     "pretest": "node ./npm_scripts/pretest.js",
     "test": "node ./npm_scripts/test.js",
     "build": "node ./npm_scripts/build.js",
@@ -16,8 +16,7 @@
     "ci": "node ./npm_scripts/ci.js",
     "release": "node ./npm_scripts/release.js",
     "verify": "node ./npm_scripts/verify.js",
-    "postinstall": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/cross-platform.js",
-    "postpublish": "npm access public && echo 'Package scope set to public!'"
+    "copy-utils": "node ./node_modules/@pearson-components/npm-scripts/npm_scripts/cross-platform.js"
   },
   "author": "Pearson Digital Accelerator",
   "license": "MIT",
@@ -31,7 +30,7 @@
     "react-modal": "^1.5.2"
   },
   "devDependencies": {
-    "@pearson-components/npm-scripts": "^0.3.7",
+    "@pearson-components/npm-scripts": "^0.3.11",
     "babel-core": "~6.3.17",
     "babel-eslint": "~4.1.6",
     "babel-loader": "~6.2.0",
