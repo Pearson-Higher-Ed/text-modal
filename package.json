@@ -1,6 +1,6 @@
 {
   "name": "@pearson-components/text-modal",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "pearson accessible text modal",
   "main": "./build/dist/text-modal.js",
   "scripts": {

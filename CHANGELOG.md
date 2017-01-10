@@ -1,3 +1,13 @@
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/Pearson-Higher-Ed/text-modal/compare/v1.0.3...v1.0.4) (2017-01-10)
+
+
+### Bug Fixes
+
+* update to fix postinstall issue. ([1cb8f62](https://github.com/Pearson-Higher-Ed/text-modal/commit/1cb8f62))
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/Pearson-Higher-Ed/text-modal/compare/v1.0.2...v1.0.3) (2016-11-21)
 
