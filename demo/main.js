@@ -20,4 +20,4 @@ export default class IndexWrapper {
 
 }
 
-document.body.addEventListener('o.InitTextIndex', e => new IndexWrapper(e.detail))
+document.body.addEventListener('o.InitIndex', e => new IndexWrapper(e.detail))
