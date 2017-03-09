@@ -1,5 +1,4 @@
-import TextModal from './src/js/TextModal.js';
+import TextModal from './src/js/TextModal';
 import './src/scss/TextModal.scss';
-
 
 export default TextModal;
