@@ -2,7 +2,6 @@
 .idea
 /node_modules
 /fonts
-/demo/elements.css
 npm-debug.log
 *.iml
 /build/dev*

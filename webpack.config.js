@@ -1,3 +1,5 @@
+
+
 module.exports = {
   entry: {
    dev: ['webpack/hot/dev-server', './demo/demo.js'],
@@ -38,7 +40,7 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         loader: 'style!css!sass' // sass -> css -> javascript -> inline style
       },
       {

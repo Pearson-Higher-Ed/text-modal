@@ -1,4 +1,5 @@
 import '../scss/TextModal.scss';
+import '../../demo/elements.css';
 
 import React, { PropTypes, Component } from 'react';
 import Modal                           from 'react-modal';

@@ -3,7 +3,7 @@
 <head>
     <title>Demo</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./demo/elements.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./demo/elements.css"> -->
 </head>
 <body>
     <!-- Customize the demo for your component -->
@@ -21,20 +21,20 @@
 
 <script>
   function buttonHandler(type) {
-// ========EVENT API FOR INTERACTING WITH THE COMPONENT=========================
-//
-// To trigger an alert...
-// - dispatch 'toggleModal' event to toggle Modal state from open to close
-//   and vice versa....
-//
-// ** Consumer must polyfill CustomEvent **
-// -----------------------------------------------------------------------------
+    // ========EVENT API FOR INTERACTING WITH THE COMPONENT=========================
+    //
+    // To trigger an alert...
+    // - dispatch 'toggleModal' event to toggle Modal state from open to close
+    //   and vice versa....
+    //
+    // ** Consumer must polyfill CustomEvent **
+    // -----------------------------------------------------------------------------
 
-      if(type === 'toggle') {
-        document.body.dispatchEvent(new CustomEvent('toggleModal'));
-      }
+          if(type === 'toggle') {
+            document.body.dispatchEvent(new CustomEvent('toggleModal'));
+          }
 
-// =============================================================================
+    // =============================================================================
   }
 </script>
 
