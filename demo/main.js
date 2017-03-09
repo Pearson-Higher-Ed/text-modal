@@ -13,7 +13,7 @@ export default class IndexWrapper {
 
   init(config) {
 
-    const reactElement = React.createElement(config.componentName, config.props, config.props.children)
+    const reactElement = React.createElement(Index, config.props, config.props.children)
 
     ReactDOM.render( reactElement, document.getElementById(config.elementId) );
   }
