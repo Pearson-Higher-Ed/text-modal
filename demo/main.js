@@ -13,11 +13,11 @@ export default class IndexWrapper {
 
   init(config) {
 
-    const reactElement = React.createElement(Index[config.componentName], config.props, config.props.children)
+    const reactElement = React.createElement(config.componentName, config.props, config.props.children)
 
     ReactDOM.render( reactElement, document.getElementById(config.elementId) );
   }
 
 }
 
-document.body.addEventListener('o.InitTextModal', e => new IndexWrapper(e.detail))
+document.body.addEventListener('o.InitTextIndex', e => new IndexWrapper(e.detail))
