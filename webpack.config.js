@@ -1,7 +1,7 @@
 module.exports = {
   entry: {
    dev: ['webpack/hot/dev-server', './demo/demo.js'],
-   dist: ['./main.js']
+   dist: ['./index.js']
   },
   output: {
     path: './',
@@ -27,7 +27,7 @@ module.exports = {
       }
     }
   ],
-  contentBase: './demo', // for webpack dev server
+  contentBase: './', // for webpack dev server
   module: {
     preLoaders: [
       {

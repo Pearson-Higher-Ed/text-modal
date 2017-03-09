@@ -1,19 +1,14 @@
-import '../scss/component-specific.scss';
+import '../scss/TextModal.scss';
 
 import React, { PropTypes, Component } from 'react';
-import { intlShape, injectIntl }       from 'react-intl';
-import { messages }                    from './defaultMessages';
 import Modal                           from 'react-modal';
 
 
-class ComponentOwner extends Component {
+class TextModal extends Component {
 
   static propTypes = {
-    intl: intlShape.isRequired,
     data: PropTypes.shape({
-      elementId            : PropTypes.string.isRequired,
       successBtnCallback   : PropTypes.func,
-      locale               : PropTypes.string,
       contentTemplateLarge : PropTypes.bool,
       footerVisible        : PropTypes.bool
     })
@@ -41,23 +36,24 @@ class ComponentOwner extends Component {
     this.applyWrapper   = _applyWrapper.bind(this);
     this.removeWrapper  = _removeWrapper.bind(this);
 
+    document.body.addEventListener( 'toggleModal', () => this.setState( { modalIsOpen:!this.state.modalIsOpen } ) );
+
   };
 
   componentWillMount() {
 
-    const { intl, data } = this.props;
+    const { data } = this.props;
 
     this.setState({
       contentTemplateLarge  : data.contentTemplateLarge,
       footerVisible         : data.footerVisible,
-      initiatingButtonText  : intl.formatMessage(messages.initiatingButtonText),
-      headerTitle           : intl.formatMessage(messages.headerTitle),
-      bodyText              : intl.formatMessage(messages.bodyText),
-      closeButtonSRText     : intl.formatMessage(messages.closeButtonSRText),
+      headerTitle           : data.text.headerTitle,
+      bodyText              : data.text.bodyText,
+      closeButtonSRText     : data.text.closeButtonSRText,
       toggleTemplate        : this.toggleTemplate(data.contentTemplateLarge),
       renderFooter          : this.renderFooter(data.footerVisible,
-                                                intl.formatMessage(messages.modalSaveButtonText),
-                                                intl.formatMessage(messages.modalCancelButtonText),
+                                                data.text.modalSaveButtonText,
+                                                data.text.modalCancelButtonText,
                                                 data.successBtnCallback
                                                )
     });
@@ -67,21 +63,17 @@ class ComponentOwner extends Component {
 
   render() {
 
-    const { modalIsOpen,
-            toggleTemplate,
-            renderFooter,
-            customStyles,
-            initiatingButtonText,
-            headerTitle,
-            closeButtonSRText,
-            bodyText
-          } = this.state;
+    const {
+      modalIsOpen,
+      toggleTemplate,
+      renderFooter,
+      customStyles,
+      headerTitle,
+      closeButtonSRText,
+      bodyText
+    } = this.state;
 
     return (
-      <div>
-
-        <button id="initiatingButton" onClick={this.toggleModal} aria-expanded="false">{initiatingButtonText}</button>
-
         <Modal
           onRequestClose = {this.toggleModal}
           className      = {toggleTemplate}
@@ -90,7 +82,8 @@ class ComponentOwner extends Component {
           style          = {customStyles}
           ariaHideApp    = {false}
           role           = "dialog"
-  	 >
+          contentLabel   = "Modal"
+  	    >
 
 
           <div id="modalContent" className="modalContent" >
@@ -111,7 +104,6 @@ class ComponentOwner extends Component {
           </div>
 
         </Modal>
-      </div>
     )
 
   };
@@ -119,7 +111,7 @@ class ComponentOwner extends Component {
 };
 
 
-export default injectIntl(ComponentOwner);
+export default TextModal;
 
 
 
@@ -130,7 +122,7 @@ export function _toggleModal() {
 
   document.getElementById('initiatingButton').setAttribute('aria-expanded', !modalIsOpen);
 
-  (!modalIsOpen) ? this.applyWrapper() : this.removeWrapper();
+  (modalIsOpen) ? this.applyWrapper() : this.removeWrapper();
 
   this.setState({modalIsOpen : !modalIsOpen});
 
