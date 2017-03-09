@@ -64,15 +64,15 @@ describe('Component Owner Suite', () => {
     );
   });
 
-  // it('should toggleModal', () => {
-  //   wrapper.find('button').simulate('click');
-  //   expect(wrapper.state('modalIsOpen')).toBe(true);
-  // });
-  //
-  // it('should apply wrapper when open', () => {
-  //   wrapper.find('button').simulate('click');
-  //   expect(wrapper.find('#wrapper')).toExist();
-  // });
+  it('should toggleModal', () => {
+    document.getElementById('initiatingButton').click();
+    expect(wrapper.state('modalIsOpen')).toBe(true);
+  });
+
+  it('should apply wrapper when open', () => {
+    document.getElementById('initiatingButton').click();
+    expect(wrapper.find('#wrapper')).toExist();
+  });
 
 
 });
