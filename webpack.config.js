@@ -3,6 +3,7 @@
 module.exports = {
   entry: {
    dev: ['webpack/hot/dev-server', './demo/demo.js'],
+   qa : ['./index.js', './demo/main.js'],
    dist: ['./index.js']
   },
   output: {

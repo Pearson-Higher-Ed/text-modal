@@ -23,8 +23,6 @@ class TextModalWrapper {
 
 }
 
-document.body.addEventListener('o.InitTextModal', e => new TextModalWrapper(e.detail))
-
 
 function init() {
 
