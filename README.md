@@ -44,14 +44,26 @@ A boolean. When set to `true`, the `pe-template__static-large` class is applied.
 
 A boolean. `true` renders a footer.
 
-`footerVisible        : true`
+`footerVisible : true`
 
-All text is configured in src/js/defaultMessages.js
+All text is configured in demo/translations/defaultMessages.js
+
+### Toggle Modal
+
+ To toggle the modal...
+ - dispatch 'toggleModal' event to toggle Modal state from open to close
+   and vice versa....
+
+   ```
+   document.body.dispatchEvent(new CustomEvent('toggleModal'));
+   ```
+
+ ** Consumer must polyfill CustomEvent **
 
 ## Polyfills
 
 As shown on the `demo.js` page, one option for running this component is with the eventing API, which uses `CustomEvent`.  `CustomEvent` isn't supported in IE and needs a polyfill:
- 
+
 ```
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent</script>
 ```

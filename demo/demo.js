@@ -1,4 +1,28 @@
-import TextModal from '../main'; // to demo direct API usage
+import React          from 'react';
+import ReactDOM       from 'react-dom';
+import IntlInjection  from './IntlInjection';
+import {IntlProvider} from 'react-intl'
+
+class TextModalWrapper {
+
+  constructor(config) {
+    this.init(config)
+  }
+
+  init(config) {
+
+    const locale = config.locale ? config.locale : 'en'
+
+    ReactDOM.render(
+      <IntlProvider locale={locale}>
+        <IntlInjection data={config} />
+      </IntlProvider>,
+      document.getElementById(config.elementId)
+    )
+  }
+
+}
+
 
 function init() {
 
@@ -13,7 +37,7 @@ function init() {
   }));
 
   // Demo direct API
-  new TextModal({
+  new TextModalWrapper({
     elementId            : 'app',
     contentTemplateLarge : true,
     footerVisible        : true,

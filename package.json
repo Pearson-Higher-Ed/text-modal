@@ -2,7 +2,7 @@
   "name": "@pearson-components/text-modal",
   "version": "1.0.4",
   "description": "pearson accessible text modal",
-  "main": "./build/dist/text-modal.js",
+  "main": "./build/dist.text-modal.js",
   "scripts": {
     "dev-setup": "node ./npm_scripts/dev-setup.js",
     "dev": "node ./npm_scripts/dev.js",

@@ -1,7 +1,10 @@
+
+
 module.exports = {
   entry: {
    dev: ['webpack/hot/dev-server', './demo/demo.js'],
-   dist: ['./main.js']
+   qa : ['./index.js', './demo/main.js'],
+   dist: ['./index.js']
   },
   output: {
     path: './',
@@ -27,7 +30,7 @@ module.exports = {
       }
     }
   ],
-  contentBase: './demo', // for webpack dev server
+  contentBase: './', // for webpack dev server
   module: {
     preLoaders: [
       {
@@ -38,7 +41,7 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         loader: 'style!css!sass' // sass -> css -> javascript -> inline style
       },
       {
