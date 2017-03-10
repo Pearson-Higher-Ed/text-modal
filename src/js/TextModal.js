@@ -178,7 +178,7 @@ export function _renderFooter(footerVisible, modalSaveButtonText, modalCancelBut
   if (footerVisible) {
     return(
       <div className="modalFooter" >
-        <button onClick={() => successBtnCallback()} className="modalSave pe-btn--primary">{modalSaveButtonText}</button>
+        <button onClick={() => successBtnCallback()} className="modalSave pe-btn pe-btn--primary">{modalSaveButtonText}</button>
         <button onClick={this.toggleModal} className="modalCancel pe-btn">{modalCancelButtonText}</button>
       </div>
     )
