@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Modal Demo</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+    <!-- Customize the demo for your component -->
+    <h1>Text Modal Demo</h1>
+    <p>Styled using the Elements SDK.</p>
+    <br />
+    <div id="app"></div>
+    <br />
+
+
+    <div class="buttonGroup">
+      <!-- Element Iniating Custom Event To Toggle modal -->
+      <button id='initiatingButton' class='pe-btn--primary' onclick="buttonHandler('toggle')">Toggle Modal</button>
+    </div>
+
+
+    <script>
+      function buttonHandler(type) {
+        // ========EVENT API FOR INTERACTING WITH THE COMPONENT=========================
+        //
+        // To trigger an alert...
+        // - dispatch 'toggleModal' event to toggle Modal state from open to close
+        //   and vice versa....
+        //
+        // ** Consumer must polyfill CustomEvent **
+        // -----------------------------------------------------------------------------
+
+              if(type === 'toggle') {
+                document.body.dispatchEvent(new CustomEvent('toggleModal'));
+              }
+
+        // =============================================================================
+      }
+    </script>
+
+    <!-- CustomEvent polyfill is for IE, Intl.js polyfill is for Safari -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,Intl.~locale.en,Intl.~locale.fr"></script>
+    <!-- Locally hosted demo server -->
+    <script src="http://localhost:8081/webpack-dev-server.js"></script>
+<script type="text/javascript" src="/text-modal/manifest.text-modal.js"></script><script type="text/javascript" src="/text-modal/vendor.text-modal.js"></script><script type="text/javascript" src="/text-modal/demo.text-modal.js"></script><script type="text/javascript" src="/text-modal/dev.text-modal.js"></script><script type="text/javascript" src="/text-modal/dist.text-modal.js"></script></body>
+</html>
